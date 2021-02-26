@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "herdspanic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Herds Panic",
   "description": "Herds just panic when a single member starts to panic",
   "authors": [
