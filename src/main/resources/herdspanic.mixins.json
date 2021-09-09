@@ -4,7 +4,22 @@
   "package": "net.herdspanic.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "EscapeDangerGoalMixin"
+    "EscapeDangerGoalMixin",
+    "MobEntityAccessor",
+    "CatEntityMixin",
+    "ChickenEntityMixin",
+    "CowEntityMixin",
+    "FoxEntityMixin",
+    "HorseBaseEntityMixin",
+    "LlamaEntityMixin",
+    "MobEntityMixin",
+    "OcelotEntityMixin",
+    "PandaEntityMixin",
+    "PigEntityMixin",
+    "PolarBearEntityMixin",
+    "RabbitEntityMixin",
+    "SheepEntityMixin",
+    "WolfEntityMixin"
   ],
   "client": [],
   "injectors": {
