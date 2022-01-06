@@ -16,5 +16,8 @@ public class HerdsPanicConfig implements ConfigData {
     public boolean shelter_seeking = false;
     @Comment("List will exclude entities from panicing and sheltering - modid:mobname")
     public List<String> excluded_entities = new ArrayList<>();
+    @Comment("in ticks")
+    public int panic_time = 100;
+    public float panic_distance = 16.0F;
 
 }

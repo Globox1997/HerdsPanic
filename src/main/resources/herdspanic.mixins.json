@@ -19,7 +19,8 @@
     "PolarBearEntityMixin",
     "RabbitEntityMixin",
     "SheepEntityMixin",
-    "WolfEntityMixin"
+    "WolfEntityMixin",
+    "LivingEntityMixin"
   ],
   "client": [],
   "injectors": {

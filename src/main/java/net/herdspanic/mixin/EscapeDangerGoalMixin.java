@@ -25,13 +25,13 @@ public abstract class EscapeDangerGoalMixin extends Goal {
 
     @Inject(method = "start", at = @At("HEAD"))
     public void startMixin(CallbackInfo info) {
-
-        if (HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
-            List<PathAwareEntity> list = mob.world.getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(10D), EntityPredicates.EXCEPT_SPECTATOR);
+        if (!mob.world.isClient && HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
+            List<PathAwareEntity> list = mob.world.getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(HerdsPanicMain.CONFIG.panic_distance), EntityPredicates.EXCEPT_SPECTATOR);
             for (int i = 0; i < list.size(); ++i) {
                 PathAwareEntity entity = (PathAwareEntity) list.get(i);
-                if (entity.getType() == mob.getType() && !mob.world.isClient) {
-                    if (mob.getAttacker() != null && entity.getAttacker() == null && mob.distanceTo(entity) < 16F && mob.distanceTo(mob.getAttacker()) < 8F) {
+                if (entity.getType() == mob.getType()) {
+                    if (mob.getAttacker() != null && entity.getAttacker() == null && mob.distanceTo(entity) < HerdsPanicMain.CONFIG.panic_distance
+                            && mob.distanceTo(mob.getAttacker()) < HerdsPanicMain.CONFIG.panic_distance / 2.0F) {
                         entity.setAttacker(mob.getAttacker());
                     }
                 }
