@@ -9,7 +9,9 @@
     "Abbanon"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/herdspanic"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/herdspanic",
+    "issues": "https://github.com/Globox1997/HerdsPanic/issues",
+    "sources": "https://github.com/Globox1997/HerdsPanic"
   },
   "license": "MIT",
   "icon": "assets/herdspanic/icon.png",
