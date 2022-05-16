@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EscapeDangerGoalMixin",
-    "MobEntityAccessor",
     "CatEntityMixin",
     "ChickenEntityMixin",
     "CowEntityMixin",
@@ -20,7 +19,8 @@
     "RabbitEntityMixin",
     "SheepEntityMixin",
     "WolfEntityMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "accessor.MobEntityAccessor"
   ],
   "client": [],
   "injectors": {
