@@ -29,7 +29,7 @@ public abstract class EscapeDangerGoalMixin extends Goal {
             List<PathAwareEntity> list = mob.world.getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(HerdsPanicMain.CONFIG.panic_distance), EntityPredicates.EXCEPT_SPECTATOR);
             for (int i = 0; i < list.size(); ++i) {
                 PathAwareEntity entity = (PathAwareEntity) list.get(i);
-                if (entity.getType() == mob.getType()) {
+                if (entity.getType() == mob.getType() || HerdsPanicMain.CONFIG.alert_all_animals) {
                     if (mob.getAttacker() != null && entity.getAttacker() == null && mob.distanceTo(entity) < HerdsPanicMain.CONFIG.panic_distance
                             && mob.distanceTo(mob.getAttacker()) < HerdsPanicMain.CONFIG.panic_distance / 2.0F) {
                         entity.setAttacker(mob.getAttacker());

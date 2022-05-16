@@ -14,6 +14,8 @@ public class HerdsPanicConfig implements ConfigData {
     public boolean herd_panic = true;
     @Comment("Animals will seek shelter when it is raining")
     public boolean shelter_seeking = false;
+    @Comment("If enabled, non specific distinction between mob type")
+    public boolean alert_all_animals = false;
     @Comment("List will exclude entities from panicing and sheltering - modid:mobname")
     public List<String> excluded_entities = new ArrayList<>();
     @Comment("in ticks")

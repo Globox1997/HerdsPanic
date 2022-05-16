@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import net.herdspanic.HerdsPanicMain;
 import net.herdspanic.goal.AvoidRainGoal;
 import net.herdspanic.goal.EscapeRainGoal;
+import net.herdspanic.mixin.accessor.MobEntityAccessor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
