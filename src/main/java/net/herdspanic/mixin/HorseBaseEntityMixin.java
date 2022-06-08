@@ -6,14 +6,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.world.World;
 
-@Mixin(AbstractHorseEntity.class)
-public abstract class AbstractHorseEntityMixin extends AnimalEntity {
+@Mixin(HorseBaseEntity.class)
+public abstract class HorseBaseEntityMixin extends AnimalEntity {
 
-    public AbstractHorseEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+    public HorseBaseEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 

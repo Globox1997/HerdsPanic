@@ -9,7 +9,7 @@
     "ChickenEntityMixin",
     "CowEntityMixin",
     "FoxEntityMixin",
-    "AbstractHorseEntityMixin",
+    "HorseBaseEntityMixin",
     "LlamaEntityMixin",
     "MobEntityMixin",
     "OcelotEntityMixin",
