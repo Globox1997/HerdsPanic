@@ -14,7 +14,7 @@ public class AvoidRainGoal extends AvoidSunlightGoal {
 
     @Override
     public boolean canStart() {
-        return this.mob.world.getLevelProperties().isRaining() && NavigationConditions.hasMobNavigation(this.mob);
+        return this.mob.getWorld().getLevelProperties().isRaining() && NavigationConditions.hasMobNavigation(this.mob);
     }
 
 }

@@ -16,6 +16,7 @@ import net.minecraft.predicate.entity.EntityPredicates;
 
 @Mixin(EscapeDangerGoal.class)
 public abstract class EscapeDangerGoalMixin extends Goal {
+
     @Shadow
     protected final PathAwareEntity mob;
 
@@ -25,8 +26,9 @@ public abstract class EscapeDangerGoalMixin extends Goal {
 
     @Inject(method = "start", at = @At("HEAD"))
     public void startMixin(CallbackInfo info) {
-        if (!mob.world.isClient && HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
-            List<PathAwareEntity> list = mob.world.getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(HerdsPanicMain.CONFIG.panic_distance), EntityPredicates.EXCEPT_SPECTATOR);
+        if (!mob.getWorld().isClient() && HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
+            List<PathAwareEntity> list = mob.getWorld().getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(HerdsPanicMain.CONFIG.panic_distance),
+                    EntityPredicates.EXCEPT_SPECTATOR);
             for (int i = 0; i < list.size(); ++i) {
                 PathAwareEntity entity = (PathAwareEntity) list.get(i);
                 if (entity.getType() == mob.getType() || HerdsPanicMain.CONFIG.alert_all_animals) {

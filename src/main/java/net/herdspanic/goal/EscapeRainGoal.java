@@ -8,13 +8,14 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.world.World;
 
 public class EscapeRainGoal extends EscapeSunlightGoal {
+
     protected final PathAwareEntity mob;
     private final World world;
 
     public EscapeRainGoal(PathAwareEntity mob, double speed) {
         super(mob, speed);
         this.mob = mob;
-        this.world = mob.world;
+        this.world = mob.getWorld();
         this.setControls(EnumSet.of(Goal.Control.MOVE));
     }
 
