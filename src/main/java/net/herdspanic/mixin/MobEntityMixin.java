@@ -24,9 +24,8 @@ public abstract class MobEntityMixin extends LivingEntity {
 
     @Inject(method = "initGoals", at = @At("HEAD"))
     protected void initGoals(CallbackInfo info) {
-        if ((Object) this instanceof AnimalEntity) {
-            AnimalEntity animalEntity = (AnimalEntity) (Object) this;
-            if (!HerdsPanicMain.CONFIG.excluded_entities.contains(this.getType().toString().replace("entity.", ""))) {
+        if ((Object) this instanceof AnimalEntity animalEntity) {
+            if (!HerdsPanicMain.CONFIG.excluded_entities.contains(this.getType().toString().replace("entity.", "").replace(".", ":"))) {
                 ((MobEntityAccessor) animalEntity).getGoalSelector().add(4, new AvoidRainGoal(animalEntity));
                 ((MobEntityAccessor) animalEntity).getGoalSelector().add(4, new EscapeRainGoal(animalEntity, 1.1D));
             }
