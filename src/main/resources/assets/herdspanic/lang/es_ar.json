@@ -1,0 +1,9 @@
+{
+    "text.autoconfig.herdspanic.title": "Configuración de HerdsPanic",
+    "text.autoconfig.herdspanic.option.herd_panic": "Pánico en manadas",
+    "text.autoconfig.herdspanic.option.shelter_seeking": "Búsqueda de refugio",
+    "text.autoconfig.herdspanic.option.excluded_entities": "Lista de entidades excluidas",
+    "text.autoconfig.herdspanic.option.panic_time": "Duración del pánico",
+    "text.autoconfig.herdspanic.option.panic_distance": "Distancia de pánico",
+    "text.autoconfig.herdspanic.option.alert_all_animals": "Alertar a todos los animales"
+}
