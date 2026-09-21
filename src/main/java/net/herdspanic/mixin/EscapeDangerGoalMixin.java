@@ -10,32 +10,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.At;
 
 import net.herdspanic.HerdsPanicMain;
-import net.minecraft.entity.ai.goal.EscapeDangerGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 
-@Mixin(EscapeDangerGoal.class)
+@Mixin(PanicGoal.class)
 public abstract class EscapeDangerGoalMixin extends Goal {
 
     @Shadow
-    protected final PathAwareEntity mob;
+    protected final PathfinderMob mob;
 
-    public EscapeDangerGoalMixin(PathAwareEntity mob, double speed) {
+    public EscapeDangerGoalMixin(PathfinderMob mob, double speed) {
         this.mob = mob;
     }
 
     @Inject(method = "start", at = @At("HEAD"))
     public void startMixin(CallbackInfo info) {
-        if (!mob.getWorld().isClient() && HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
-            List<PathAwareEntity> list = mob.getWorld().getEntitiesByClass(PathAwareEntity.class, mob.getBoundingBox().expand(HerdsPanicMain.CONFIG.panic_distance),
-                    EntityPredicates.EXCEPT_SPECTATOR);
-            for (int i = 0; i < list.size(); ++i) {
-                PathAwareEntity entity = (PathAwareEntity) list.get(i);
-                if (entity.getType() == mob.getType() || HerdsPanicMain.CONFIG.alert_all_animals) {
-                    if (mob.getAttacker() != null && entity.getAttacker() == null && mob.distanceTo(entity) < HerdsPanicMain.CONFIG.panic_distance
-                            && mob.distanceTo(mob.getAttacker()) < HerdsPanicMain.CONFIG.panic_distance / 2.0F) {
-                        entity.setAttacker(mob.getAttacker());
+        if (!mob.level().isClientSide() && HerdsPanicMain.CONFIG.herd_panic && !HerdsPanicMain.CONFIG.excluded_entities.contains(mob.getType().toString().replace("entity.", ""))) {
+            List<PathfinderMob> list = mob.level().getEntitiesOfClass(PathfinderMob.class, mob.getBoundingBox().inflate(HerdsPanicMain.CONFIG.panic_distance),
+                    EntitySelector.NO_SPECTATORS);
+            for (PathfinderMob pathfinderMob : list) {
+                if (pathfinderMob.getType() == mob.getType() || HerdsPanicMain.CONFIG.alert_all_animals) {
+                    if (mob.getLastHurtByMob() != null && pathfinderMob.getLastHurtByMob() == null && mob.distanceTo(pathfinderMob) < HerdsPanicMain.CONFIG.panic_distance
+                            && mob.distanceTo(mob.getLastHurtByMob()) < HerdsPanicMain.CONFIG.panic_distance / 2.0F) {
+                        pathfinderMob.setLastHurtByMob(mob.getLastHurtByMob());
                     }
                 }
             }
@@ -43,9 +42,9 @@ public abstract class EscapeDangerGoalMixin extends Goal {
 
     }
 
-    @Inject(method = "isInDanger", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "shouldPanic", at = @At("HEAD"), cancellable = true)
     protected void isInDangerMixin(CallbackInfoReturnable<Boolean> info) {
-        if (mob.getAttacker() != null) {
+        if (mob.getLastHurtByMob() != null) {
             info.setReturnValue(true);
         }
     }

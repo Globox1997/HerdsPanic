@@ -1,24 +1,23 @@
 package net.herdspanic.mixin;
 
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.animal.wolf.Wolf;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.world.World;
+@Mixin(Wolf.class)
+public abstract class WolfEntityMixin extends TamableAnimal {
 
-@Mixin(WolfEntity.class)
-public abstract class WolfEntityMixin extends TameableEntity {
-
-    public WolfEntityMixin(EntityType<? extends TameableEntity> entityType, World world) {
+    public WolfEntityMixin(EntityType<? extends TamableAnimal> entityType, Level world) {
         super(entityType, world);
     }
 
-    @Inject(method = "initGoals", at = @At("HEAD"))
+    @Inject(method = "registerGoals", at = @At("HEAD"))
     protected void initGoalsMixin(CallbackInfo info) {
-        super.initGoals();
+        super.registerGoals();
     }
 }

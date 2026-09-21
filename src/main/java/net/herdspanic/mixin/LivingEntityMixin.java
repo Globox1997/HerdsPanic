@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import net.herdspanic.HerdsPanicMain;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {

@@ -1,25 +1,24 @@
 package net.herdspanic.mixin;
 
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.equine.AbstractChestedHorse;
+import net.minecraft.world.entity.animal.equine.Llama;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.AbstractDonkeyEntity;
-import net.minecraft.entity.passive.LlamaEntity;
-import net.minecraft.world.World;
+@Mixin(Llama.class)
+public abstract class LlamaEntityMixin extends AbstractChestedHorse {
 
-@Mixin(LlamaEntity.class)
-public abstract class LlamaEntityMixin extends AbstractDonkeyEntity {
-
-    public LlamaEntityMixin(EntityType<? extends AbstractDonkeyEntity> entityType, World world) {
+    public LlamaEntityMixin(EntityType<? extends AbstractChestedHorse> entityType, Level world) {
         super(entityType, world);
     }
 
-    @Inject(method = "initGoals", at = @At("HEAD"))
+    @Inject(method = "registerGoals", at = @At("HEAD"))
     protected void initGoalsMixin(CallbackInfo info) {
-        super.initGoals();
+        super.registerGoals();
     }
 
 }

@@ -1,13 +1,12 @@
 package net.herdspanic.mixin.accessor;
 
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.GoalSelector;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import net.minecraft.entity.ai.goal.GoalSelector;
-import net.minecraft.entity.mob.MobEntity;
-
-@Mixin(MobEntity.class)
-public abstract interface MobEntityAccessor {
+@Mixin(Mob.class)
+public interface MobEntityAccessor {
 
     @Accessor("goalSelector")
     GoalSelector getGoalSelector();

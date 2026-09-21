@@ -1,32 +1,31 @@
 package net.herdspanic.goal;
 
 import java.util.EnumSet;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.FleeSunGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.entity.ai.goal.EscapeSunlightGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.world.World;
+public class EscapeRainGoal extends FleeSunGoal {
 
-public class EscapeRainGoal extends EscapeSunlightGoal {
+    protected final PathfinderMob mob;
+    private final Level world;
 
-    protected final PathAwareEntity mob;
-    private final World world;
-
-    public EscapeRainGoal(PathAwareEntity mob, double speed) {
+    public EscapeRainGoal(PathfinderMob mob, double speed) {
         super(mob, speed);
         this.mob = mob;
-        this.world = mob.getWorld();
-        this.setControls(EnumSet.of(Goal.Control.MOVE));
+        this.world = mob.level();
+        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
     }
 
     @Override
-    public boolean canStart() {
-        if (!this.world.getLevelProperties().isRaining()) {
+    public boolean canUse() {
+        if (!this.world.isRaining()) {
             return false;
-        } else if (!this.world.isSkyVisible(this.mob.getBlockPos())) {
+        } else if (!this.world.canSeeSky(this.mob.blockPosition())) {
             return false;
         } else {
-            return this.targetShadedPos();
+            return this.setWantedPos();
         }
     }
 
