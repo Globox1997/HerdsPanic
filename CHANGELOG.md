@@ -1,5 +1,5 @@
 ### Added:
-- 
+- NeoForge support
 ### Fixed:
 - 
 ### Changed:

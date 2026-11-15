@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.herdspanic.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "EscapeDangerGoalMixin",
+    "CatEntityMixin",
+    "ChickenEntityMixin",
+    "FoxEntityMixin",
+    "AbstractHorseEntityMixin",
+    "AbstractCowEntityMixin",
+    "LlamaEntityMixin",
+    "MobEntityMixin",
+    "OcelotEntityMixin",
+    "PandaEntityMixin",
+    "PigEntityMixin",
+    "RabbitEntityMixin",
+    "SheepEntityMixin",
+    "WolfEntityMixin",
+    "LivingEntityMixin",
+    "accessor.MobEntityAccessor"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

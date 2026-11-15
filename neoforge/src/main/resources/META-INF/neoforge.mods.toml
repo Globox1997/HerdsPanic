@@ -1,0 +1,37 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/Globox1997/HerdsPanic/issues"
+
+[[mods]]
+modId = "herdspanic"
+version = "${version}"
+displayName = "Herds Panic"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/herdspanic"
+iconFile = "assets/herdspanic/icon.png"
+authors = "Globox_Z, Abbanon"
+description = '''Herds just panic when a single member starts to panic'''
+
+[[mixins]]
+config = "herdspanic.mixins.json"
+
+[[dependencies.herdspanic]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoforge_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.herdspanic]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${minecraft_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.herdspanic]]
+modId = "cloth_config"
+type = "required"
+versionRange = "[${cloth_config_version},)"
+ordering = "NONE"
+side = "BOTH"
